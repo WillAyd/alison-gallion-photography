@@ -1,7 +1,35 @@
-import logo from "../images/logo.svg";
-import iglogo from "../images/icon-instagram.svg";
-
 const AboutMe = () => {
+  const query = graphql`
+  query {
+    contentfulAlisonGallionPhotography {
+      logo {
+        id
+        title
+        url
+        width
+        height
+      }
+    }
+  }
+`;
+  const logo = query["data"]["contentfulAlisonGallionPhotography"]["logo"];
+
+  const socialQuery = graphql`
+  query {
+    contentfulSocialLogos {
+      logo {
+          id
+          title
+          url
+          width
+          height
+      }
+    }
+  }
+`;
+
+  const socialLogos = socialQuery["data"]["contentfulSocialLogos"]["logo"];
+  
   return (
     <footer className="bg-black">
       <div className="container max-w-6xl py-10 mx-auto">
@@ -12,7 +40,7 @@ const AboutMe = () => {
             className="flex flex-col items-center space-y-8 md:items-start md:space-y-4"
           >
             <div className="h-8">
-              <img src={logo} alt="" className="w-44 md:ml-3" />
+              <img src={logo["image"]} alt="" className="w-44 md:ml-3" />
             </div>
             <div
               className="flex flex-col items-center space-y-4 font-bold text-white md:flex-row md:space-y-0 md:space-x-6 md:ml-3"
@@ -28,7 +56,7 @@ const AboutMe = () => {
             >
               <div className="h-8 group">
                 <a href="https://www.instagram.com/alisongallionphotography/">
-                <img src={iglogo} alt="" className="h-6" />
+                <img src={socialLogos["url"]} alt="" className="h-6" />
                 </a>
               </div>
             </div>

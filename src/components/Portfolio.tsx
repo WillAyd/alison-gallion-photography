@@ -5,7 +5,9 @@ import PropTypes from "prop-types"
 
 const Portfolio = ({data}) => {
   const images = data.contentfulAlisonGallionPhotography.portfolioImages;
-  const imageHtml = images.map((image) => {
+
+  // Break these up every 4th element
+  const imageHtml = images.map((image, index) => {
     return (
       <div className="group item" key={image.id}>
         <img

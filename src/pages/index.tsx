@@ -1,4 +1,5 @@
 import * as React from "react"
+import "../style/global.css"
 import type { HeadFC } from "gatsby"
 import Hero from "../components/Hero"
 import AboutMe from "../components/AboutMe"

@@ -9,7 +9,7 @@ const Portfolio = ({data}) => {
     return (
       <div className="group item" key={image.id}>
         <img
-	  src={image["url"]}
+	  src={image.url}
           alt=""
           className="w-full duration-200 md:block group-hover:scale-110"
         />

@@ -1,21 +1,9 @@
 import React from "react";
-import aboutMe from "../images/about-me-image.jpg";
+import { graphql, StaticQuery } from 'gatsby'
+import PropTypes from "prop-types"
 
-const AboutMe = () => {
-  const query = graphql`
-  query {
-    contentfulAlisonGallionPhotography {
-      aboutMe {
-        id
-        title
-        url
-        width
-        height
-      }
-    }
-  }
-`;
-  const aboutMe = query["data"]["contentfulAlisonGallionPhotography"]["aboutMe"];
+const AboutMe = ({data}) => {
+  const aboutMe = data.contentfulAlisonGallionPhotography.aboutMePhoto;
   
   return (
     <section id="feature">
@@ -42,4 +30,38 @@ const AboutMe = () => {
   );
 }
 
-export default AboutMe;
+export default function MyAboutMe(props) {
+  return (
+    <StaticQuery
+    query={graphql`
+  {
+    contentfulAlisonGallionPhotography {
+      aboutMePhoto {
+        id
+        title
+        url
+        width
+        height
+      }
+    }
+  }
+`}
+    render={data => <AboutMe data={data} {...props} />}
+    />
+  )
+}
+
+AboutMe.propTypes = {
+  data: PropTypes.shape({
+    contentfulAlisonGallionPhotography: PropTypes.shape({
+      aboutMePhoto: PropTypes.shape({
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
+	width: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+}
+

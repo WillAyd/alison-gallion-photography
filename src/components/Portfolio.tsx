@@ -1,25 +1,13 @@
 import React from "react";
-import { graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
+import PropTypes from "prop-types"
 
 
-const Portfolio = () => {
-  const query = graphql`
-  query {
-    contentfulAlisonGallionPhotography {
-      portfolioImages {
-        id
-        title
-        url
-        width
-        height
-      }
-    }
-  }
-`;
-  const images = query["data"]["contentfulAlisonGallionPhotography"]["portfolioImages"];
+const Portfolio = ({data}) => {
+  const images = data.contentfulAlisonGallionPhotography.portfolioImages;
   const imageHtml = images.map((image) => {
     return (
-      <div className="group item">
+      <div className="group item" key={image.id}>
         <img
 	  src={image["url"]}
           alt=""
@@ -45,4 +33,37 @@ const Portfolio = () => {
   );
 }
 
-export default Portfolio;
+export default function MyPortfolio(props) {
+  return (
+    <StaticQuery
+    query={graphql`
+  {
+    contentfulAlisonGallionPhotography {
+      portfolioImages {
+        id
+        title
+        url
+        width
+        height
+      }
+    }
+  }
+`}
+    render={data => <Portfolio data={data} {...props} />}
+    />
+  )
+}
+
+Portfolio.propTypes = {
+  data: PropTypes.shape({
+    contentfulAlisonGallionPhotography: PropTypes.shape({
+      portfolioImages: PropTypes.arrayOf(PropTypes.shape({
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
+	width: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired
+      })).isRequired,
+    }).isRequired,
+  }).isRequired,
+}

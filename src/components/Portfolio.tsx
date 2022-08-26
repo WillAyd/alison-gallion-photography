@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
-import PropTypes from "prop-types";
 
 const Portfolio = ({ data }) => {
   const images = data.contentfulAlisonGallionPhotography.portfolioImages;
@@ -67,7 +66,12 @@ export default function MyPortfolio(props) {
             portfolioImages {
               id
               title
-              gatsbyImageData(width: 300, placeholder: BLURRED, formats: [AUTO])
+              gatsbyImageData(
+                width: 300
+                height: 450
+                placeholder: BLURRED
+                formats: [AUTO]
+              )
             }
           }
         }

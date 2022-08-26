@@ -10,7 +10,7 @@ const Footer = ({ data }) => {
         <div className="flex flex-col items-center mb-8 space-y-6 md:flex-row md:space-y-0 md:justify-between md:items-start">
           <div className="flex flex-col items-center space-y-8 md:items-start md:space-y-4">
             <div className="h-8">
-              <img src={logo.image} alt="" className="w-44 md:ml-3" />
+              <img src={logo.url} alt="" className="w-44 md:ml-3" />
             </div>
             <div className="flex flex-col items-center space-y-4 font-bold text-white md:flex-row md:space-y-0 md:space-x-6 md:ml-3"></div>
           </div>

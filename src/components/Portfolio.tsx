@@ -21,8 +21,11 @@ const Portfolio = ({ data }) => {
   }, []);
 
   const imageHtml = chunked.map((chunk, index) => {
-      return (
-      <div className={index > 0 ? "item-container mt-10" : "item-container"}>
+    return (
+      <div
+        className={index > 0 ? "item-container mt-10" : "item-container"}
+        key={index}
+      >
         {chunk.map((image) => {
           return (
             <div className="group item" key={image.id}>

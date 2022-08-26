@@ -1,9 +1,8 @@
 import React from "react";
-import { graphql, StaticQuery } from "gatsby"
-import PropTypes from "prop-types"
+import { graphql, StaticQuery } from "gatsby";
+import PropTypes from "prop-types";
 
-
-const Portfolio = ({data}) => {
+const Portfolio = ({ data }) => {
   const images = data.contentfulAlisonGallionPhotography.portfolioImages;
 
   // Break these up every 4th element
@@ -11,12 +10,13 @@ const Portfolio = ({data}) => {
     return (
       <div className="group item" key={image.id}>
         <img
-	  src={image.url}
+          src={image.url}
           alt=""
           className="w-full duration-200 md:block group-hover:scale-110"
         />
       </div>
-    )});
+    );
+  });
 
   return (
     <section id="portfolio">
@@ -27,45 +27,45 @@ const Portfolio = ({data}) => {
           </h2>
         </div>
 
-        <div className="item-container">
-	  {imageHtml}
-        </div>
+        <div className="item-container">{imageHtml}</div>
       </div>
     </section>
   );
-}
+};
 
 export default function MyPortfolio(props) {
   return (
     <StaticQuery
-    query={graphql`
-  {
-    contentfulAlisonGallionPhotography {
-      portfolioImages {
-        id
-        title
-        url
-        width
-        height
-      }
-    }
-  }
-`}
-    render={data => <Portfolio data={data} {...props} />}
+      query={graphql`
+        {
+          contentfulAlisonGallionPhotography {
+            portfolioImages {
+              id
+              title
+              url
+              width
+              height
+            }
+          }
+        }
+      `}
+      render={(data) => <Portfolio data={data} {...props} />}
     />
-  )
+  );
 }
 
 Portfolio.propTypes = {
   data: PropTypes.shape({
     contentfulAlisonGallionPhotography: PropTypes.shape({
-      portfolioImages: PropTypes.arrayOf(PropTypes.shape({
-	id: PropTypes.string.isRequired,
-	title: PropTypes.string.isRequired,
-	url: PropTypes.string.isRequired,
-	width: PropTypes.number.isRequired,
-	height: PropTypes.number.isRequired
-      })).isRequired,
+      portfolioImages: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+          width: PropTypes.number.isRequired,
+          height: PropTypes.number.isRequired,
+        })
+      ).isRequired,
     }).isRequired,
   }).isRequired,
-}
+};

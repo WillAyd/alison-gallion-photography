@@ -27,6 +27,8 @@ const config: GatsbyConfig = {
         trackingIds: [process.env.GA_TRACKING_ID],
         // This object is used for configuration specific to this plugin
         pluginConfig: {
+          head: false,
+          respectDNT: true,
           origin: "https://alisongallionphotography.com",
         },
       },

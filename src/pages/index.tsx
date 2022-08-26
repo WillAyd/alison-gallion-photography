@@ -14,4 +14,12 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Alison Gallion Photography</title>
+export const Head: HeadFC = () => (
+  <React.Fragment>
+    <title>Alison Gallion Photography</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />    
+  </React.Fragment>
+)

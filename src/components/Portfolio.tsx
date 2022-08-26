@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import PropTypes from "prop-types";
 
 const Portfolio = ({ data }) => {
@@ -27,11 +28,12 @@ const Portfolio = ({ data }) => {
         key={index}
       >
         {chunk.map((image) => {
+          const renderedImage = getImage(image);
           return (
             <div className="group item" key={image.id}>
-              <img
-                src={image.url}
-                alt=""
+              <GatsbyImage
+                image={renderedImage}
+                alt={image.title}
                 className="w-full duration-200 md:block group-hover:scale-110"
               />
             </div>
@@ -65,9 +67,7 @@ export default function MyPortfolio(props) {
             portfolioImages {
               id
               title
-              url
-              width
-              height
+              gatsbyImageData(width: 300, placeholder: BLURRED, formats: [AUTO])
             }
           }
         }
@@ -76,19 +76,3 @@ export default function MyPortfolio(props) {
     />
   );
 }
-
-Portfolio.propTypes = {
-  data: PropTypes.shape({
-    contentfulAlisonGallionPhotography: PropTypes.shape({
-      portfolioImages: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          title: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired,
-          width: PropTypes.number.isRequired,
-          height: PropTypes.number.isRequired,
-        })
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
-};

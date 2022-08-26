@@ -7,7 +7,7 @@ const Hero = ({ data }) => {
 
   return (
     <section id="hero">
-      <div className="container max-w-6xl mx-auto px-6 py-12">
+      <div className="container max-w-6xl mx-auto px-6 py-6">
         <nav className="flex items-center justify-between font-bold text-white">
           <img
             src={logo.url}

@@ -22,9 +22,13 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-gtag",
       options: {
-        trackingId: process.env.GA_TRACKING_ID,
+        trackingIds: [process.env.GA_TRACKING_ID],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          origin: "https://alisongallionphotography.com",
+        },
       },
     },
     "gatsby-plugin-image",

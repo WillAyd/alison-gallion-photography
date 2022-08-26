@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 import PropTypes from "prop-types";
+import AboutMeText from "./AboutMeText";
 
 const AboutMe = ({ data }) => {
   const aboutMe = data.contentfulAlisonGallionPhotography.aboutMePhoto;
@@ -14,14 +15,7 @@ const AboutMe = ({ data }) => {
           <h2 className="max-w-lg mt-10 mb-6 font-sans text-4xl text-center text-gray-900 uppercase md:text-5xl md:mt-0 md:text-left">
             About me
           </h2>
-
-          <p className="max-w-md text-center md:text-left">
-            I LOVE photography. Capturing the beauty of our lives one moment at
-            a time is the true definition of zen. Nothing brings greater joy
-            than to bottle up the perfect point in time where you see the true
-            kindness of a human being, animal companion, or Mother Nature
-            herself.
-          </p>
+          <AboutMeText />
         </div>
       </div>
     </section>

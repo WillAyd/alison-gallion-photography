@@ -5,15 +5,35 @@ import PropTypes from "prop-types";
 const Portfolio = ({ data }) => {
   const images = data.contentfulAlisonGallionPhotography.portfolioImages;
 
-  // Break these up every 4th element
-  const imageHtml = images.map((image, index) => {
+  // Need to chunk data so we have balanced opening and closing tags
+  // https://stackoverflow.com/a/37826698/621736
+  const perChunk = 4; // items per chunk
+  const chunked = images.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / perChunk);
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = []; // start a new chunk
+    }
+
+    resultArray[chunkIndex].push(item);
+
+    return resultArray;
+  }, []);
+
+  const imageHtml = chunked.map((chunk) => {
     return (
-      <div className="group item" key={image.id}>
-        <img
-          src={image.url}
-          alt=""
-          className="w-full duration-200 md:block group-hover:scale-110"
-        />
+      <div className="item-container">
+        {chunk.map((image) => {
+          return (
+            <div className="group item" key={image.id}>
+              <img
+                src={image.url}
+                alt=""
+                className="w-full duration-200 md:block group-hover:scale-110"
+              />
+            </div>
+          );
+        })}
       </div>
     );
   });
@@ -27,7 +47,7 @@ const Portfolio = ({ data }) => {
           </h2>
         </div>
 
-        <div className="item-container">{imageHtml}</div>
+        {imageHtml}
       </div>
     </section>
   );

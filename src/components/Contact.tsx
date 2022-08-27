@@ -9,7 +9,7 @@ const Contact = () => {
             Contact Me
           </h2>
         </div>
-        <p className="text-2xl">
+        <p className="max-w-md text-center md:text-left">
           <a href="mailto:alison@alisongallionphotography.com">
             alison@alisongallionphotography.com
           </a>

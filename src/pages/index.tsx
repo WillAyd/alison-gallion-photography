@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import AboutMe from "../components/AboutMe";
 import Portfolio from "../components/Portfolio";
 import Footer from "../components/Footer";
+import Contact from "../components/Contact";
 
 const IndexPage = () => {
   return (
@@ -13,6 +14,7 @@ const IndexPage = () => {
       <Hero />
       <AboutMe />
       <Portfolio />
+      <Contact />
       <Footer />
     </React.Fragment>
   );
